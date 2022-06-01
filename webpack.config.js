@@ -22,7 +22,7 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             //hash: true,
-            title: 'Flux Builder',
+            title: 'CDN explorer',
             template: './index.html',
             filename: './index.html',
             baseHref: `/applications/${packageJson.name}/${packageJson.version}/dist/`,
