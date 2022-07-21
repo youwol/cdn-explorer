@@ -1,3 +1,46 @@
-# @youwol/cdn-explorer
+# cdn-explorer
 
-Application to explorer CDN packages of YouWol
+Application to browse packages/libraries published in YouWol's CDN.
+
+## Installation, Build & Test
+
+To install the required dependencies:
+
+```shell
+yarn
+```
+
+To build for development:
+
+```shell
+yarn build:dev
+```
+
+To build for production:
+
+```shell
+yarn build:prod
+```
+
+Tests require py-youwol to run on port 2001 using the configuration defined [here](https://github.com/youwol/integration-tests-conf).
+
+```shell
+yarn test
+```
+
+To start the dev-server:
+
+```shell
+yarn start
+```
+
+To generate code documentation:
+
+```shell
+yarn doc
+```
+
+## Documentation
+
+Documentation of the library can be found [here](https://platform.youwol.com/applications/@youwol/cdn-explorer/latest?package=@youwol/cdn-explorer).
+
