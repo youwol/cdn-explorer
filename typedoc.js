@@ -6,4 +6,5 @@ module.exports = {
     categorizeByGroup: false,
     categoryOrder: ['Getting Started', '*'],
     excludeExternals: true,
+    sort: 'source-order',
 }
