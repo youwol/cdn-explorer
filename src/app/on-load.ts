@@ -15,6 +15,10 @@ import { ChildApplicationAPI } from '@youwol/os-core'
 
 require('./style.css')
 
+/**
+ *
+ * @category Getting Started
+ */
 export class AppState {
     public readonly assets$ = new ReplaySubject<AssetsBackend.GetAssetResponse>(
         1,
@@ -59,6 +63,11 @@ export class AppState {
             })
     }
 }
+
+/**
+ *
+ * @category Getting Started
+ */
 export class AppView implements VirtualDOM {
     public readonly state: AppState
     public readonly class =
