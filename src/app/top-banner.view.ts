@@ -2,10 +2,14 @@ import { TopBannerView } from '@youwol/os-top-banner'
 import { attr$, child$ } from '@youwol/flux-view'
 import { AppState } from './on-load'
 import { basic } from '@youwol/installers-youwol'
-import { filter } from 'rxjs/operators'
-import { merge } from 'rxjs'
+import { filter, withLatestFrom } from 'rxjs/operators'
+import { merge, Subject } from 'rxjs'
+import { HTMLElement$ } from '@youwol/flux-view'
 
 export class ExplorerBannerView extends TopBannerView {
+    public readonly tmpSearch$ = new Subject<string>()
+    public readonly click$ = new Subject<MouseEvent | KeyboardEvent>()
+
     constructor({ appState }: { appState: AppState }) {
         super({
             innerView: {
@@ -28,9 +32,12 @@ export class ExplorerBannerView extends TopBannerView {
                                 return search
                             },
                         ),
+                        oninput: (ev) => {
+                            this.tmpSearch$.next(ev.target.value)
+                        },
                         onkeydown: (ev) => {
                             if (ev.key === 'Enter') {
-                                appState.search(ev.target.value)
+                                this.click$.next(ev)
                             }
                         },
                     },
@@ -42,7 +49,7 @@ export class ExplorerBannerView extends TopBannerView {
                             },
                         ],
                         onclick: (ev) => {
-                            appState.search(ev.target.value)
+                            this.click$.next(ev)
                         },
                     },
                     child$(appState.packageState$, (packageState) => {
@@ -51,6 +58,18 @@ export class ExplorerBannerView extends TopBannerView {
                         })
                     }),
                 ],
+                connectedCallback: (elem: HTMLElement$) => {
+                    elem.ownSubscriptions(
+                        appState.search$.subscribe((v) =>
+                            this.tmpSearch$.next(v),
+                        ),
+                        this.click$
+                            .pipe(withLatestFrom(this.tmpSearch$))
+                            .subscribe(([_, text]) => {
+                                appState.search(text)
+                            }),
+                    )
+                },
             },
         })
     }
