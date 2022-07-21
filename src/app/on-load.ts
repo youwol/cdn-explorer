@@ -23,9 +23,10 @@ export class AppState {
     public readonly packageState$ = new ReplaySubject<basic.PackageInfoState>(1)
     public readonly errors$ = new ReplaySubject<HTTPError>(1)
     public readonly search$ = new BehaviorSubject<string>(undefined)
+
     constructor() {
         const packageName = new URLSearchParams(window.location.search).get(
-            'package-name',
+            'package',
         )
         this.search(packageName || '@youwol/os-core')
         ChildApplicationAPI.setProperties({
