@@ -6,6 +6,9 @@ import { filter, withLatestFrom } from 'rxjs/operators'
 import { merge, Subject } from 'rxjs'
 import { HTMLElement$ } from '@youwol/flux-view'
 
+/**
+ * @category View
+ */
 export class ExplorerBannerView extends TopBannerView {
     public readonly tmpSearch$ = new Subject<string>()
     public readonly click$ = new Subject<MouseEvent | KeyboardEvent>()

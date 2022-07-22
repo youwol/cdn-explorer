@@ -7,7 +7,13 @@ import { child$, VirtualDOM } from '@youwol/flux-view'
 import { AssetsGateway, raiseHTTPErrors } from '@youwol/http-clients'
 import { GetPathResponse } from '@youwol/http-clients/dist/lib/explorer-backend'
 
+/**
+ * @category State
+ */
 export class TabsState extends DockableTabs.State {
+    /**
+     * @group States
+     */
     public readonly packageState: basic.PackageInfoState
 
     constructor(params: { packageState: basic.PackageInfoState }) {
@@ -33,6 +39,9 @@ export class TabsState extends DockableTabs.State {
     }
 }
 
+/**
+ * @category View
+ */
 export class FilesTab extends DockableTabs.Tab {
     constructor() {
         super({
@@ -58,7 +67,9 @@ export class FilesTab extends DockableTabs.Tab {
         Object.assign(this)
     }
 }
-
+/**
+ * @category View
+ */
 export class LinkTab extends DockableTabs.Tab {
     constructor(link: { name; version; url }) {
         super({
@@ -94,7 +105,9 @@ export class LinkTab extends DockableTabs.Tab {
         Object.assign(this)
     }
 }
-
+/**
+ * @category View
+ */
 export class ReferencesTab extends DockableTabs.Tab {
     constructor() {
         const client = new AssetsGateway.Client().explorer
@@ -135,9 +148,22 @@ export class ReferencesTab extends DockableTabs.Tab {
     }
 }
 
+/**
+ * @category View
+ */
 export class PathsView implements VirtualDOM {
+    /**
+     * @group Immutable DOM Constants
+     */
     public readonly children: VirtualDOM[]
+
+    /**
+     * @group Immutable Constants
+     */
     public readonly paths: GetPathResponse[]
+    /**
+     * @group Immutable DOM Constants
+     */
     public readonly class = 'p-2 container'
     constructor(params: { paths: GetPathResponse[] }) {
         Object.assign(this, params)
@@ -147,10 +173,28 @@ export class PathsView implements VirtualDOM {
     }
 }
 
+/**
+ * @category View
+ */
 export class PathView implements VirtualDOM {
+    /**
+     * @group Immutable DOM Constants
+     */
     public readonly class = 'border rounded p-2 container w-50 mb-2'
+
+    /**
+     * @group Immutable DOM Constants
+     */
     public readonly children: VirtualDOM[]
+
+    /**
+     * @group Immutable Constants
+     */
     public readonly path: GetPathResponse
+
+    /**
+     * @group Immutable DOM Constants
+     */
     public readonly style = {
         width: 'fit-content',
     }
@@ -178,10 +222,20 @@ export class PathView implements VirtualDOM {
         ]
     }
 }
-
+/**
+ * @category View
+ */
 export class PathElementView {
+    /**
+     * @group Immutable DOM Constants
+     */
     public readonly class = 'align-items-center row'
+
+    /**
+     * @group Immutable DOM Constants
+     */
     public readonly children: VirtualDOM[]
+
     constructor(params: { icon: string; text: string }) {
         this.children = [
             {

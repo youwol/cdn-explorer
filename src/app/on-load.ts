@@ -17,15 +17,34 @@ require('./style.css')
 
 /**
  *
- * @category Getting Started
+ * @category State
  */
 export class AppState {
+    /**
+     * @group Observables
+     */
     public readonly assets$ = new ReplaySubject<AssetsBackend.GetAssetResponse>(
         1,
     )
+
+    /**
+     * @group HTTP
+     */
     public readonly client = new AssetsGateway.Client().assets
-    public readonly packageState$ = new ReplaySubject<basic.PackageInfoState>(1)
+
+    /**
+     * @group Observables
+     */
+    public readonly package$ = new ReplaySubject<basic.PackageInfoState>(1)
+
+    /**
+     * @group Observables
+     */
     public readonly errors$ = new ReplaySubject<HTTPError>(1)
+
+    /**
+     * @group Observables
+     */
     public readonly search$ = new BehaviorSubject<string>(undefined)
 
     constructor() {
@@ -59,7 +78,7 @@ export class AppState {
                     asset: response,
                 })
                 packageState.metadata$.subscribe()
-                this.packageState$.next(packageState)
+                this.package$.next(packageState)
             })
     }
 }
@@ -67,13 +86,28 @@ export class AppState {
 /**
  *
  * @category Getting Started
+ * @category View
  */
 export class AppView implements VirtualDOM {
+    /**
+     * @group States
+     */
     public readonly state: AppState
+
+    /**
+     * @group Immutable DOM Constants
+     */
     public readonly class =
         'h-100 w-100 d-flex flex-column fv-text-primary position-relative'
 
+    /**
+     * @group Immutable DOM Constants
+     */
     public readonly children: VirtualDOM[]
+
+    /**
+     * @group Immutable DOM Constants
+     */
     public readonly style: Stream$<
         { [_key: string]: string },
         { [_key: string]: string }
@@ -88,7 +122,7 @@ export class AppView implements VirtualDOM {
                 class: 'w-100 flex-grow-1 position-relative',
                 children: [
                     child$(
-                        merge(this.state.packageState$, this.state.errors$),
+                        merge(this.state.package$, this.state.errors$),
                         (packageState) => {
                             if (packageState instanceof HTTPError) {
                                 return new HTTPErrorView({
