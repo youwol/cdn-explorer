@@ -4,16 +4,16 @@ import { AppState } from './on-load'
 import { basic } from '@youwol/installers-youwol'
 import { filter, withLatestFrom } from 'rxjs/operators'
 import { merge, Subject } from 'rxjs'
-import { HTMLElement$ } from '@youwol/flux-view'
+import { HTMLElement$ } from '@youwol/flux-view/dist'
 
 /**
  * @category View
  */
 export class ExplorerBannerView extends TopBannerView {
-    public readonly tmpSearch$ = new Subject<string>()
-    public readonly click$ = new Subject<MouseEvent | KeyboardEvent>()
-
     constructor({ appState }: { appState: AppState }) {
+        const tmpSearch$ = new Subject<string>()
+        const click$ = new Subject<MouseEvent | KeyboardEvent>()
+
         super({
             innerView: {
                 class: 'd-flex w-100 justify-content-center my-auto align-items-center',
@@ -36,11 +36,11 @@ export class ExplorerBannerView extends TopBannerView {
                             },
                         ),
                         oninput: (ev) => {
-                            this.tmpSearch$.next(ev.target.value)
+                            tmpSearch$.next(ev.target.value)
                         },
                         onkeydown: (ev) => {
                             if (ev.key === 'Enter') {
-                                this.click$.next(ev)
+                                click$.next(ev)
                             }
                         },
                     },
@@ -52,10 +52,10 @@ export class ExplorerBannerView extends TopBannerView {
                             },
                         ],
                         onclick: (ev) => {
-                            this.click$.next(ev)
+                            click$.next(ev)
                         },
                     },
-                    child$(appState.packageState$, (packageState) => {
+                    child$(appState.package$, (packageState) => {
                         return new basic.PackageVersionSelect({
                             state: packageState,
                         })
@@ -63,11 +63,9 @@ export class ExplorerBannerView extends TopBannerView {
                 ],
                 connectedCallback: (elem: HTMLElement$) => {
                     elem.ownSubscriptions(
-                        appState.search$.subscribe((v) =>
-                            this.tmpSearch$.next(v),
-                        ),
-                        this.click$
-                            .pipe(withLatestFrom(this.tmpSearch$))
+                        appState.search$.subscribe((v) => tmpSearch$.next(v)),
+                        click$
+                            .pipe(withLatestFrom(tmpSearch$))
                             .subscribe(([_, text]) => {
                                 appState.search(text)
                             }),
