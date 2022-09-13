@@ -1,12 +1,19 @@
-const path = require('path')
+import * as path from 'path'
+// Do not shorten following import, it will cause webpack.config file to not compile anymore
+import { setup } from './src/auto-generated'
+import * as webpack from 'webpack'
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+
+// This line is required to get type's definition of 'devServer' attribute.
+import 'webpack-dev-server';
+
 const ROOT = path.resolve(__dirname, 'src/app')
 const DESTINATION = path.resolve(__dirname, 'dist')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
-const packageJson = require('./package.json')
 
-module.exports = {
+
+const webpackConfig: webpack.Configuration = {
     context: ROOT,
     mode: 'development',
     entry: {
@@ -21,11 +28,9 @@ module.exports = {
             insert: '#css-anchor',
         }),
         new HtmlWebpackPlugin({
-            //hash: true,
-            title: 'CDN explorer',
             template: './index.html',
             filename: './index.html',
-            baseHref: `/applications/${packageJson.name}/${packageJson.version}/dist/`,
+            baseHref: `/applications/${setup.name}/${setup.version}/dist/`,
         }),
         new BundleAnalyzerPlugin({
             analyzerMode: 'static',
@@ -37,26 +42,11 @@ module.exports = {
         filename: '[name].[contenthash].js',
         path: DESTINATION,
     },
-
     resolve: {
         extensions: ['.ts', '.js'],
         modules: [ROOT, 'node_modules'],
     },
-    externals: [
-        {
-            lodash: "window['_']",
-            rxjs: 'rxjs',
-            'rxjs/operators': "window['rxjs']['operators']",
-            '@youwol/flux-view': "window['@youwol/flux-view']",
-            '@youwol/fv-tabs': "window['@youwol/fv-tabs']",
-            '@youwol/cdn-client': "window['@youwol/cdn-client']",
-            '@youwol/http-clients': "window['@youwol/http-clients']",
-            '@youwol/os-core': "window['@youwol/os-core']",
-            '@youwol/installers-youwol': "window['@youwol/installers-youwol']",
-            codemirror: "window['CodeMirror']",
-            typescript: "window['ts']",
-        },
-    ],
+    externals: setup.externals,
     module: {
         rules: [
             /****************
@@ -90,3 +80,4 @@ module.exports = {
         port: 3010,
     },
 }
+export default webpackConfig
