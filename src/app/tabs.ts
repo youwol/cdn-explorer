@@ -4,8 +4,9 @@ import { basic } from '@youwol/installers-youwol'
 import { filter, map, mergeMap } from 'rxjs/operators'
 import { getUrlBase } from '@youwol/cdn-client'
 import { child$, VirtualDOM } from '@youwol/flux-view'
-import { AssetsGateway, raiseHTTPErrors } from '@youwol/http-clients'
-import { GetPathResponse } from '@youwol/http-clients/dist/lib/explorer-backend'
+import { AssetsGateway, raiseHTTPErrors, ExplorerBackend } from '@youwol/http-clients'
+
+type GetPathResponse = ExplorerBackend.GetPathResponse
 
 /**
  * @category State
