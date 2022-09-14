@@ -1,7 +1,7 @@
 {
     "name": "@youwol/cdn-explorer",
     "description": "CDN explorer application",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "author": "greinisch@youwol.com",
     "homepage": "https://github.com/youwol/cdn-explorer#README.md",
     "main": "dist/index.html",
@@ -67,24 +67,24 @@
         ]
     },
     "dependencies": {
-        "@youwol/os-core": "^0.1.0",
-        "@youwol/fv-tabs": "^0.2.0",
-        "@youwol/os-top-banner": "^0.1.0",
-        "@youwol/cdn-client": "^1.0.0",
-        "@youwol/http-clients": "^1.0.0",
-        "@youwol/flux-view": "^1.0.0",
-        "@youwol/installers-youwol": "^0.1.0",
+        "@youwol/os-core": "^0.1.1",
+        "@youwol/fv-tabs": "^0.2.1",
+        "@youwol/os-top-banner": "^0.1.1",
+        "@youwol/cdn-client": "^1.0.2",
+        "@youwol/http-clients": "^1.0.2",
+        "@youwol/flux-view": "^1.0.3",
+        "@youwol/installers-youwol": "^0.1.1",
         "rxjs": "^6.5.5"
     },
     "youwol": {
         "cdnDependencies": {
-            "@youwol/os-core": "^0.1.0",
-            "@youwol/fv-tabs": "^0.2.0",
-            "@youwol/os-top-banner": "^0.1.0",
-            "@youwol/cdn-client": "^1.0.0",
-            "@youwol/http-clients": "^1.0.0",
-            "@youwol/flux-view": "^1.0.0",
-            "@youwol/installers-youwol": "^0.1.0",
+            "@youwol/os-core": "^0.1.1",
+            "@youwol/fv-tabs": "^0.2.1",
+            "@youwol/os-top-banner": "^0.1.1",
+            "@youwol/cdn-client": "^1.0.2",
+            "@youwol/http-clients": "^1.0.2",
+            "@youwol/flux-view": "^1.0.3",
+            "@youwol/installers-youwol": "^0.1.1",
             "rxjs": "^6.5.5"
         }
     }

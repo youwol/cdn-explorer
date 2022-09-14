@@ -1,8 +1,9 @@
 import { setup } from '../auto-generated'
-require('./style.css')
-let cdn = window['@youwol/cdn-client']
+import { install } from '@youwol/cdn-client'
 
-await cdn.install({
+require('./style.css')
+
+await install({
     modules: Object.entries(setup.runTimeDependencies.load).map(
         ([k, v]) => `${k}#${v}`,
     ),
