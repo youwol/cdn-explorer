@@ -51,7 +51,7 @@ export class AppState {
         const packageName = new URLSearchParams(window.location.search).get(
             'package',
         )
-        this.search(packageName || '@youwol/os-core')
+        this.search(packageName || '@youwol/cdn-client')
         ChildApplicationAPI.setProperties({
             snippet: {
                 class: 'd-flex align-items-center px-1',
