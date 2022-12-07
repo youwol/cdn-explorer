@@ -1,5 +1,5 @@
 import { TopBannerView } from '@youwol/os-top-banner'
-import { attr$, child$, HTMLElement$} from '@youwol/flux-view'
+import { attr$, child$, HTMLElement$ } from '@youwol/flux-view'
 import { AppState } from './on-load'
 import { basic } from '@youwol/installers-youwol'
 import { filter, withLatestFrom } from 'rxjs/operators'

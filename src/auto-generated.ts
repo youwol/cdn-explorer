@@ -82,7 +82,7 @@ const entries = {
 export const setup = {
     name:'@youwol/cdn-explorer',
         assetId:'QHlvdXdvbC9jZG4tZXhwbG9yZXI=',
-    version:'0.1.2',
+    version:'0.1.3',
     shortDescription:"CDN explorer application",
     developerDocumentation:'https://platform.youwol.com/applications/@youwol/cdn-explorer/latest?package=@youwol/cdn-explorer',
     npmPackage:'https://www.npmjs.com/package/@youwol/cdn-explorer',
@@ -117,7 +117,7 @@ export const setup = {
         const parameters = installParameters || {}
         const scripts = [
             ...(parameters.scripts || []),
-            `@youwol/cdn-explorer#0.1.2~dist/@youwol/cdn-explorer/${entry.name}.js`
+            `@youwol/cdn-explorer#0.1.3~dist/@youwol/cdn-explorer/${entry.name}.js`
         ]
         const modules = [
             ...(parameters.modules || []),
