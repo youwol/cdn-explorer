@@ -10,7 +10,7 @@
         "clean": "del-cli dist",
         "auto-gen": "python template.py",
         "build": "yarn build:dev",
-        "pre-build": "yarn clean && yarn auto-gen",
+        "pre-build": "yarn clean",
         "build:dev": "yarn pre-build && webpack --mode development",
         "build:prod": "yarn pre-build && webpack --mode production",
         "lint-check": "yarn lint-prettier-check && yarn lint-eslint-check",
@@ -62,7 +62,7 @@
         "html-webpack-plugin": "5.2.0",
         "mini-css-extract-plugin": "^2.7.0",
         "source-map-loader": "2.0.1",
-        "webpack-dev-server": "^4.11.1"
+        "webpack-dev-server": "^4.7.1"
     },
     "prettier": "@youwol/prettier-config",
     "eslintConfig": {
