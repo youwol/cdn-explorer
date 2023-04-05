@@ -15,6 +15,8 @@ import { ChildApplicationAPI } from '@youwol/os-core'
 
 require('./style.css')
 
+export const defaultPackage = '@youwol/cdn-client'
+
 /**
  *
  * @category State
@@ -51,7 +53,7 @@ export class AppState {
         const packageName = new URLSearchParams(window.location.search).get(
             'package',
         )
-        this.search(packageName || '@youwol/cdn-client')
+        this.search(packageName || defaultPackage)
         ChildApplicationAPI.setProperties({
             snippet: {
                 class: 'd-flex align-items-center px-1',
