@@ -1,13 +1,14 @@
 
 const runTimeDependencies = {
     "externals": {
-        "@youwol/os-core": "^0.1.1",
+        "@youwol/os-core": "^0.1.8",
         "@youwol/fv-tabs": "^0.2.1",
-        "@youwol/os-top-banner": "^0.1.1",
-        "@youwol/cdn-client": "^1.0.2",
-        "@youwol/http-clients": "^1.0.2",
-        "@youwol/flux-view": "^1.0.3",
-        "@youwol/installers-youwol": "^0.1.1",
+        "@youwol/os-top-banner": "^0.1.2",
+        "@youwol/cdn-client": "^1.0.10",
+        "@youwol/http-clients": "^2.0.5",
+        "@youwol/http-primitives": "^0.1.2",
+        "@youwol/flux-view": "^1.1.0",
+        "@youwol/installers-youwol": "^0.1.3",
         "rxjs": "^6.5.5"
     },
     "includedInBundle": {}
@@ -17,7 +18,8 @@ const externals = {
     "@youwol/fv-tabs": "window['@youwol/fv-tabs_APIv02']",
     "@youwol/os-top-banner": "window['@youwol/os-top-banner_APIv01']",
     "@youwol/cdn-client": "window['@youwol/cdn-client_APIv1']",
-    "@youwol/http-clients": "window['@youwol/http-clients_APIv1']",
+    "@youwol/http-clients": "window['@youwol/http-clients_APIv2']",
+    "@youwol/http-primitives": "window['@youwol/http-primitives_APIv01']",
     "@youwol/flux-view": "window['@youwol/flux-view_APIv1']",
     "@youwol/installers-youwol": "window['@youwol/installers-youwol_APIv01']",
     "rxjs": "window['rxjs_APIv6']",
@@ -41,8 +43,12 @@ const exportedSymbols = {
         "exportedSymbol": "@youwol/cdn-client"
     },
     "@youwol/http-clients": {
-        "apiKey": "1",
+        "apiKey": "2",
         "exportedSymbol": "@youwol/http-clients"
+    },
+    "@youwol/http-primitives": {
+        "apiKey": "01",
+        "exportedSymbol": "@youwol/http-primitives"
     },
     "@youwol/flux-view": {
         "apiKey": "1",
@@ -66,6 +72,7 @@ const mainEntry : {entryFile: string,loadDependencies:string[]} = {
         "@youwol/os-top-banner",
         "@youwol/cdn-client",
         "@youwol/http-clients",
+        "@youwol/http-primitives",
         "@youwol/flux-view",
         "@youwol/installers-youwol",
         "rxjs"
@@ -81,7 +88,7 @@ const entries = {
 export const setup = {
     name:'@youwol/cdn-explorer',
         assetId:'QHlvdXdvbC9jZG4tZXhwbG9yZXI=',
-    version:'0.1.3',
+    version:'0.1.4',
     shortDescription:"CDN explorer application",
     developerDocumentation:'https://platform.youwol.com/applications/@youwol/cdn-explorer/latest?package=@youwol/cdn-explorer',
     npmPackage:'https://www.npmjs.com/package/@youwol/cdn-explorer',
@@ -127,7 +134,7 @@ export const setup = {
         const parameters = installParameters || {}
         const scripts = [
             ...(parameters.scripts || []),
-            `@youwol/cdn-explorer#0.1.3~dist/@youwol/cdn-explorer/${entry.name}.js`
+            `@youwol/cdn-explorer#0.1.4~dist/@youwol/cdn-explorer/${entry.name}.js`
         ]
         const modules = [
             ...(parameters.modules || []),

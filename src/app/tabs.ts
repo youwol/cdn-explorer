@@ -4,12 +4,8 @@ import { basic } from '@youwol/installers-youwol'
 import { filter, map, mergeMap } from 'rxjs/operators'
 import { getUrlBase } from '@youwol/cdn-client'
 import { child$, VirtualDOM } from '@youwol/flux-view'
-import {
-    AssetsGateway,
-    raiseHTTPErrors,
-    ExplorerBackend,
-} from '@youwol/http-clients'
-
+import { AssetsGateway, ExplorerBackend } from '@youwol/http-clients'
+import { raiseHTTPErrors } from '@youwol/http-primitives'
 type GetPathResponse = ExplorerBackend.GetPathResponse
 
 /**
@@ -37,9 +33,19 @@ export class TabsState extends DockableTabs.State {
             persistTabsView: true,
         })
         Object.assign(this, params)
-        console.log(this.packageState)
-        this.packageState.links$.subscribe((links) => {
-            console.log('links', links)
+        const tab = new URLSearchParams(window.location.search)
+            .get('tab')
+            ?.toLowerCase()
+        params.packageState.links$.subscribe((links) => {
+            const map = {
+                files: 'Files',
+                references: 'References',
+                ...links.reduce(
+                    (acc, l) => ({ ...acc, [l.name.toLowerCase()]: l.name }),
+                    {},
+                ),
+            }
+            tab && map[tab] && this.selected$.next(map[tab])
         })
     }
 }

@@ -10,13 +10,14 @@ folder_path = Path(__file__).parent
 pkg_json = parse_json(folder_path / 'package.json')
 
 load_dependencies = {
-    '@youwol/os-core': '^0.1.1',
+    '@youwol/os-core': '^0.1.8',
     '@youwol/fv-tabs': '^0.2.1',
-    '@youwol/os-top-banner': '^0.1.1',
-    '@youwol/cdn-client': '^1.0.2',
-    '@youwol/http-clients': '^1.0.2',
-    '@youwol/flux-view': '^1.0.3',
-    '@youwol/installers-youwol': '^0.1.1',
+    '@youwol/os-top-banner': '^0.1.2',
+    '@youwol/cdn-client': '^1.0.10',
+    '@youwol/http-clients': '^2.0.5',
+    "@youwol/http-primitives": "^0.1.2",
+    '@youwol/flux-view': '^1.1.0',
+    '@youwol/installers-youwol': '^0.1.3',
     'rxjs': '^6.5.5',
 }
 

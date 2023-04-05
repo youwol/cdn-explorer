@@ -1,11 +1,7 @@
 import { render, VirtualDOM, Stream$, child$ } from '@youwol/flux-view'
 import { DockableTabs } from '@youwol/fv-tabs'
-import {
-    AssetsBackend,
-    AssetsGateway,
-    dispatchHTTPErrors,
-    HTTPError,
-} from '@youwol/http-clients'
+import { AssetsBackend, AssetsGateway } from '@youwol/http-clients'
+import { dispatchHTTPErrors, HTTPError } from '@youwol/http-primitives'
 import { ExplorerBannerView } from './top-banner.view'
 import { BehaviorSubject, merge, ReplaySubject } from 'rxjs'
 import { basic } from '@youwol/installers-youwol'
@@ -14,6 +10,8 @@ import { HTTPErrorView } from './errors.view'
 import { ChildApplicationAPI } from '@youwol/os-core'
 
 require('./style.css')
+
+export const defaultPackage = '@youwol/cdn-client'
 
 /**
  *
@@ -51,7 +49,7 @@ export class AppState {
         const packageName = new URLSearchParams(window.location.search).get(
             'package',
         )
-        this.search(packageName || '@youwol/cdn-client')
+        this.search(packageName || defaultPackage)
         ChildApplicationAPI.setProperties({
             snippet: {
                 class: 'd-flex align-items-center px-1',
