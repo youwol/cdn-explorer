@@ -1,11 +1,7 @@
 import { render, VirtualDOM, Stream$, child$ } from '@youwol/flux-view'
 import { DockableTabs } from '@youwol/fv-tabs'
-import {
-    AssetsBackend,
-    AssetsGateway,
-    dispatchHTTPErrors,
-    HTTPError,
-} from '@youwol/http-clients'
+import { AssetsBackend, AssetsGateway } from '@youwol/http-clients'
+import { dispatchHTTPErrors, HTTPError } from '@youwol/http-primitives'
 import { ExplorerBannerView } from './top-banner.view'
 import { BehaviorSubject, merge, ReplaySubject } from 'rxjs'
 import { basic } from '@youwol/installers-youwol'

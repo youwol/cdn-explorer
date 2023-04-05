@@ -1,4 +1,4 @@
-import { HTTPError } from '@youwol/http-clients'
+import { HTTPError } from '@youwol/http-primitives'
 import { VirtualDOM } from '@youwol/flux-view'
 
 export class HTTPErrorView implements VirtualDOM {
