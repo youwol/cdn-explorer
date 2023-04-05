@@ -37,9 +37,19 @@ export class TabsState extends DockableTabs.State {
             persistTabsView: true,
         })
         Object.assign(this, params)
-        console.log(this.packageState)
-        this.packageState.links$.subscribe((links) => {
-            console.log('links', links)
+        const tab = new URLSearchParams(window.location.search)
+            .get('tab')
+            ?.toLowerCase()
+        params.packageState.links$.subscribe((links) => {
+            const map = {
+                files: 'Files',
+                references: 'References',
+                ...links.reduce(
+                    (acc, l) => ({ ...acc, [l.name.toLowerCase()]: l.name }),
+                    {},
+                ),
+            }
+            tab && map[tab] && this.selected$.next(map[tab])
         })
     }
 }
