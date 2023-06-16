@@ -88,9 +88,9 @@ const entries = {
 export const setup = {
     name:'@youwol/cdn-explorer',
         assetId:'QHlvdXdvbC9jZG4tZXhwbG9yZXI=',
-    version:'0.1.4',
+    version:'0.1.5-wip',
     shortDescription:"CDN explorer application",
-    developerDocumentation:'https://platform.youwol.com/applications/@youwol/cdn-explorer/latest?package=@youwol/cdn-explorer',
+    developerDocumentation:'https://platform.youwol.com/applications/@youwol/cdn-explorer/latest?package=@youwol/cdn-explorer&tab=doc',
     npmPackage:'https://www.npmjs.com/package/@youwol/cdn-explorer',
     sourceGithub:'https://github.com/youwol/cdn-explorer',
     userGuide:'https://l.youwol.com/doc/@youwol/cdn-explorer',
@@ -105,7 +105,7 @@ export const setup = {
     },
 
     installMainModule: ({cdnClient, installParameters}:{
-        cdnClient:{install:(unknown) => Promise<Window>},
+        cdnClient:{install:(unknown) => Promise<WindowOrWorkerGlobalScope>},
         installParameters?
     }) => {
         const parameters = installParameters || {}
@@ -124,7 +124,7 @@ export const setup = {
     },
     installAuxiliaryModule: ({name, cdnClient, installParameters}:{
         name: string,
-        cdnClient:{install:(unknown) => Promise<Window>},
+        cdnClient:{install:(unknown) => Promise<WindowOrWorkerGlobalScope>},
         installParameters?
     }) => {
         const entry = secondaryEntries[name]
@@ -134,7 +134,7 @@ export const setup = {
         const parameters = installParameters || {}
         const scripts = [
             ...(parameters.scripts || []),
-            `@youwol/cdn-explorer#0.1.4~dist/@youwol/cdn-explorer/${entry.name}.js`
+            `@youwol/cdn-explorer#0.1.5-wip~dist/@youwol/cdn-explorer/${entry.name}.js`
         ]
         const modules = [
             ...(parameters.modules || []),
