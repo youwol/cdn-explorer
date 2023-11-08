@@ -1,18 +1,26 @@
 import { render, VirtualDOM, Stream$, child$ } from '@youwol/flux-view'
 import { DockableTabs } from '@youwol/fv-tabs'
-import { AssetsBackend, AssetsGateway } from '@youwol/http-clients'
+import { AssetsGateway } from '@youwol/http-clients'
 import { dispatchHTTPErrors, HTTPError } from '@youwol/http-primitives'
 import { ExplorerBannerView } from './top-banner.view'
 import { BehaviorSubject, merge, ReplaySubject } from 'rxjs'
-import { basic } from '@youwol/installers-youwol'
+import {
+    webpmPackageInfoModule,
+    WebpmPackageInfoTypes,
+} from '@youwol/os-widgets'
 import { TabsState } from './tabs'
 import { HTTPErrorView } from './errors.view'
-import { ChildApplicationAPI } from '@youwol/os-core'
+import { AssetLightDescription, ChildApplicationAPI } from '@youwol/os-core'
 
 require('./style.css')
 
 export const defaultPackage = '@youwol/cdn-client'
 
+/**
+ * `webpmPackageInfoModule`, part of  @youwol/os-widgets, is an auxiliary module of it that needs to be loaded
+ * on demand. This is the purpose of the next line.
+ */
+export const webpmPackageModule = await webpmPackageInfoModule()
 /**
  *
  * @category State
@@ -21,9 +29,7 @@ export class AppState {
     /**
      * @group Observables
      */
-    public readonly assets$ = new ReplaySubject<AssetsBackend.GetAssetResponse>(
-        1,
-    )
+    public readonly assets$ = new ReplaySubject<AssetLightDescription>(1)
 
     /**
      * @group HTTP
@@ -33,7 +39,8 @@ export class AppState {
     /**
      * @group Observables
      */
-    public readonly package$ = new ReplaySubject<basic.PackageInfoState>(1)
+    public readonly package$ =
+        new ReplaySubject<WebpmPackageInfoTypes.PackageInfoState>(1)
 
     /**
      * @group Observables
@@ -70,13 +77,11 @@ export class AppState {
                 assetId: window.btoa(window.btoa(packageName)),
             })
             .pipe(dispatchHTTPErrors(this.errors$))
-            .subscribe((response) => {
-                this.assets$.next(response)
-                const packageState = new basic.PackageInfoState({
-                    asset: response,
-                })
-                packageState.metadata$.subscribe()
-                this.package$.next(packageState)
+            .subscribe((asset) => {
+                const state = new webpmPackageModule.PackageInfoState({ asset })
+                this.assets$.next(state.asset)
+                state.metadata$.subscribe()
+                this.package$.next(state)
             })
     }
 }

@@ -1,11 +1,13 @@
 import { DockableTabs } from '@youwol/fv-tabs'
 import { BehaviorSubject, forkJoin } from 'rxjs'
-import { basic } from '@youwol/installers-youwol'
 import { filter, map, mergeMap } from 'rxjs/operators'
 import { getUrlBase } from '@youwol/cdn-client'
 import { child$, VirtualDOM } from '@youwol/flux-view'
 import { AssetsGateway, ExplorerBackend } from '@youwol/http-clients'
 import { raiseHTTPErrors } from '@youwol/http-primitives'
+import { WebpmPackageInfoTypes } from '@youwol/os-widgets'
+import { webpmPackageModule } from './on-load'
+
 type GetPathResponse = ExplorerBackend.GetPathResponse
 
 /**
@@ -15,9 +17,11 @@ export class TabsState extends DockableTabs.State {
     /**
      * @group States
      */
-    public readonly packageState: basic.PackageInfoState
+    public readonly packageState: WebpmPackageInfoTypes.PackageInfoState
 
-    constructor(params: { packageState: basic.PackageInfoState }) {
+    constructor(params: {
+        packageState: WebpmPackageInfoTypes.PackageInfoState
+    }) {
         super({
             disposition: 'left',
             viewState$: new BehaviorSubject<DockableTabs.DisplayMode>('pined'),
@@ -66,7 +70,7 @@ export class FilesTab extends DockableTabs.Tab {
                         child$(
                             tabsState.packageState.selectedVersion$,
                             (version) =>
-                                new basic.ExplorerView({
+                                new webpmPackageModule.ExplorerView({
                                     asset: tabsState.packageState.asset,
                                     version,
                                 }),
