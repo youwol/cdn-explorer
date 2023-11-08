@@ -1,7 +1,6 @@
 import { TopBannerView } from '@youwol/os-top-banner'
 import { attr$, child$, HTMLElement$ } from '@youwol/flux-view'
-import { AppState } from './on-load'
-import { basic } from '@youwol/installers-youwol'
+import { AppState, webpmPackageModule } from './on-load'
 import { filter, withLatestFrom } from 'rxjs/operators'
 import { merge, Subject } from 'rxjs'
 
@@ -55,7 +54,7 @@ export class ExplorerBannerView extends TopBannerView {
                         },
                     },
                     child$(appState.package$, (packageState) => {
-                        return new basic.PackageVersionSelect({
+                        return new webpmPackageModule.PackageVersionSelect({
                             state: packageState,
                         })
                     }),

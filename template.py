@@ -10,14 +10,14 @@ folder_path = Path(__file__).parent
 pkg_json = parse_json(folder_path / 'package.json')
 
 load_dependencies = {
-    '@youwol/os-core': '^0.1.8',
+    '@youwol/os-core': '^0.1.15',
     '@youwol/fv-tabs': '^0.2.1',
     '@youwol/os-top-banner': '^0.1.2',
-    '@youwol/cdn-client': '^1.0.10',
+    '@youwol/cdn-client': '^2.1.2',
     '@youwol/http-clients': '^2.0.5',
     "@youwol/http-primitives": "^0.1.2",
     '@youwol/flux-view': '^1.1.0',
-    '@youwol/installers-youwol': '^0.1.3',
+    '@youwol/os-widgets': '^0.1.2',
     'rxjs': '^6.5.5',
 }
 
@@ -33,8 +33,7 @@ template = Template(
             externals=load_dependencies
         ),
         devTime={
-            #  those two prevent failure of typedoc
-            "@types/lz-string": "^1.3.34",
+            # prevent failure of typedoc
             "lz-string": "^1.4.4"
         }
     ),

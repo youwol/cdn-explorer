@@ -1,14 +1,14 @@
 
 const runTimeDependencies = {
     "externals": {
-        "@youwol/os-core": "^0.1.8",
+        "@youwol/os-core": "^0.1.15",
         "@youwol/fv-tabs": "^0.2.1",
         "@youwol/os-top-banner": "^0.1.2",
-        "@youwol/cdn-client": "^1.0.10",
+        "@youwol/cdn-client": "^2.1.2",
         "@youwol/http-clients": "^2.0.5",
         "@youwol/http-primitives": "^0.1.2",
         "@youwol/flux-view": "^1.1.0",
-        "@youwol/installers-youwol": "^0.1.3",
+        "@youwol/os-widgets": "^0.1.2",
         "rxjs": "^6.5.5"
     },
     "includedInBundle": {}
@@ -17,11 +17,11 @@ const externals = {
     "@youwol/os-core": "window['@youwol/os-core_APIv01']",
     "@youwol/fv-tabs": "window['@youwol/fv-tabs_APIv02']",
     "@youwol/os-top-banner": "window['@youwol/os-top-banner_APIv01']",
-    "@youwol/cdn-client": "window['@youwol/cdn-client_APIv1']",
+    "@youwol/cdn-client": "window['@youwol/cdn-client_APIv2']",
     "@youwol/http-clients": "window['@youwol/http-clients_APIv2']",
     "@youwol/http-primitives": "window['@youwol/http-primitives_APIv01']",
     "@youwol/flux-view": "window['@youwol/flux-view_APIv1']",
-    "@youwol/installers-youwol": "window['@youwol/installers-youwol_APIv01']",
+    "@youwol/os-widgets": "window['@youwol/os-widgets_APIv01']",
     "rxjs": "window['rxjs_APIv6']",
     "rxjs/operators": "window['rxjs_APIv6']['operators']"
 }
@@ -39,7 +39,7 @@ const exportedSymbols = {
         "exportedSymbol": "@youwol/os-top-banner"
     },
     "@youwol/cdn-client": {
-        "apiKey": "1",
+        "apiKey": "2",
         "exportedSymbol": "@youwol/cdn-client"
     },
     "@youwol/http-clients": {
@@ -54,9 +54,9 @@ const exportedSymbols = {
         "apiKey": "1",
         "exportedSymbol": "@youwol/flux-view"
     },
-    "@youwol/installers-youwol": {
+    "@youwol/os-widgets": {
         "apiKey": "01",
-        "exportedSymbol": "@youwol/installers-youwol"
+        "exportedSymbol": "@youwol/os-widgets"
     },
     "rxjs": {
         "apiKey": "6",
@@ -74,7 +74,7 @@ const mainEntry : {entryFile: string,loadDependencies:string[]} = {
         "@youwol/http-clients",
         "@youwol/http-primitives",
         "@youwol/flux-view",
-        "@youwol/installers-youwol",
+        "@youwol/os-widgets",
         "rxjs"
     ]
 }
