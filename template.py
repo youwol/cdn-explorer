@@ -17,7 +17,7 @@ load_dependencies = {
     '@youwol/http-clients': '^2.0.5',
     "@youwol/http-primitives": "^0.1.2",
     '@youwol/flux-view': '^1.1.0',
-    '@youwol/installers-youwol': '^0.1.3',
+    '@youwol/os-widgets': '^0.1.2',
     'rxjs': '^6.5.5',
 }
 
