@@ -33,8 +33,7 @@ template = Template(
             externals=load_dependencies
         ),
         devTime={
-            #  those two prevent failure of typedoc
-            "@types/lz-string": "^1.3.34",
+            # prevent failure of typedoc
             "lz-string": "^1.4.4"
         }
     ),
