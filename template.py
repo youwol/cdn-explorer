@@ -13,7 +13,7 @@ load_dependencies = {
     '@youwol/os-core': '^0.1.15',
     '@youwol/fv-tabs': '^0.2.1',
     '@youwol/os-top-banner': '^0.1.2',
-    '@youwol/cdn-client': '^1.0.10',
+    '@youwol/cdn-client': '^2.1.2',
     '@youwol/http-clients': '^2.0.5',
     "@youwol/http-primitives": "^0.1.2",
     '@youwol/flux-view': '^1.1.0',
