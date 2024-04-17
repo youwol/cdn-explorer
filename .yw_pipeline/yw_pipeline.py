@@ -2,7 +2,7 @@ from pathlib import Path
 
 from youwol.app.environment import YouwolEnvironment
 from youwol.app.environment.models import IPipelineFactory
-youwol.app.routers.projects import BrowserApp, Execution, Link, BrowserAppGraphics, OpenWith
+from youwol.app.routers.projects import BrowserApp, Execution, Link, BrowserAppGraphics, OpenWith
 from youwol.pipelines.pipeline_typescript_weback_npm import pipeline, PipelineConfig, PublishConfig
 from youwol.utils import parse_json, encode_id
 from youwol.utils.context import Context
