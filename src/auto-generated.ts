@@ -1,46 +1,42 @@
 
 const runTimeDependencies = {
     "externals": {
-        "@youwol/os-core": "^0.1.15",
-        "@youwol/fv-tabs": "^0.2.1",
-        "@youwol/os-top-banner": "^0.1.2",
         "@youwol/cdn-client": "^2.1.2",
+        "@youwol/flux-view": "^1.1.0",
+        "@youwol/fv-tabs": "^0.2.1",
         "@youwol/http-clients": "^2.0.5",
         "@youwol/http-primitives": "^0.1.2",
-        "@youwol/flux-view": "^1.1.0",
+        "@youwol/os-core": "^0.1.15",
+        "@youwol/os-top-banner": "^0.1.2",
         "@youwol/os-widgets": "^0.1.2",
         "rxjs": "^6.5.5"
     },
     "includedInBundle": {}
 }
 const externals = {
-    "@youwol/os-core": "window['@youwol/os-core_APIv01']",
-    "@youwol/fv-tabs": "window['@youwol/fv-tabs_APIv02']",
-    "@youwol/os-top-banner": "window['@youwol/os-top-banner_APIv01']",
     "@youwol/cdn-client": "window['@youwol/cdn-client_APIv2']",
+    "@youwol/flux-view": "window['@youwol/flux-view_APIv1']",
+    "@youwol/fv-tabs": "window['@youwol/fv-tabs_APIv02']",
     "@youwol/http-clients": "window['@youwol/http-clients_APIv2']",
     "@youwol/http-primitives": "window['@youwol/http-primitives_APIv01']",
-    "@youwol/flux-view": "window['@youwol/flux-view_APIv1']",
+    "@youwol/os-core": "window['@youwol/os-core_APIv01']",
+    "@youwol/os-top-banner": "window['@youwol/os-top-banner_APIv01']",
     "@youwol/os-widgets": "window['@youwol/os-widgets_APIv01']",
     "rxjs": "window['rxjs_APIv6']",
     "rxjs/operators": "window['rxjs_APIv6']['operators']"
 }
 const exportedSymbols = {
-    "@youwol/os-core": {
-        "apiKey": "01",
-        "exportedSymbol": "@youwol/os-core"
+    "@youwol/cdn-client": {
+        "apiKey": "2",
+        "exportedSymbol": "@youwol/cdn-client"
+    },
+    "@youwol/flux-view": {
+        "apiKey": "1",
+        "exportedSymbol": "@youwol/flux-view"
     },
     "@youwol/fv-tabs": {
         "apiKey": "02",
         "exportedSymbol": "@youwol/fv-tabs"
-    },
-    "@youwol/os-top-banner": {
-        "apiKey": "01",
-        "exportedSymbol": "@youwol/os-top-banner"
-    },
-    "@youwol/cdn-client": {
-        "apiKey": "2",
-        "exportedSymbol": "@youwol/cdn-client"
     },
     "@youwol/http-clients": {
         "apiKey": "2",
@@ -50,9 +46,13 @@ const exportedSymbols = {
         "apiKey": "01",
         "exportedSymbol": "@youwol/http-primitives"
     },
-    "@youwol/flux-view": {
-        "apiKey": "1",
-        "exportedSymbol": "@youwol/flux-view"
+    "@youwol/os-core": {
+        "apiKey": "01",
+        "exportedSymbol": "@youwol/os-core"
+    },
+    "@youwol/os-top-banner": {
+        "apiKey": "01",
+        "exportedSymbol": "@youwol/os-top-banner"
     },
     "@youwol/os-widgets": {
         "apiKey": "01",
